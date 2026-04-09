@@ -5,13 +5,19 @@
   <title>SmartFinance AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ✅ Flask CSS Fix -->
+  <!-- CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+
+<!-- 🔐 LOGOUT -->
+<div style="text-align:right; padding:10px;">
+  <a href="/logout">Logout</a>
+</div>
 
 <!-- 🔥 HERO -->
 <section class="hero">
@@ -38,20 +44,17 @@
   </div>
 </section>
 
-<!-- 📂 UPLOAD (FIXED) -->
-<section class="section upload" id="upload">
-  <h2>Upload Your CSV</h2>
+<!-- 📂 UPLOAD -->
+<section class="section" id="upload">
+  <h2>Upload CSV</h2>
 
-  <!-- ✅ FORM CONNECTED TO FLASK -->
   <form action="/analyze" method="POST" enctype="multipart/form-data">
     <input type="file" name="file" required>
-    <br><br>
     <button type="submit">Analyze</button>
   </form>
-
 </section>
 
-<!-- 📊 RESULTS + 🤖 INSIGHT -->
+<!-- 📊 RESULTS -->
 {% if revenue %}
 <section class="section">
   <h2>Results 📊</h2>
@@ -60,14 +63,10 @@
   <p>Expenses: ₹{{ expenses }}</p>
   <p>Profit: ₹{{ profit }}</p>
 
-  <!-- 🤖 AI INSIGHT (THIS IS YOUR ANSWER) -->
-  {% if insight %}
   <h3>{{ insight }}</h3>
-  {% endif %}
 
   <!-- 📊 CHART -->
   <canvas id="financeChart" width="300" height="150"></canvas>
-
 </section>
 
 <script>
@@ -102,3 +101,4 @@ function scrollToUpload() {
 </script>
 
 </body>
+</html>
